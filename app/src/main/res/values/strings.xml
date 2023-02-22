@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">lesson6_1</string>
+    <string name="text">text</string>
+    <string name="send_text">Send_text</string>
+    <string name="not_empty">EditText не может быть пустым!</string>
+    <string name="submit" />
+    <string name="enter_image_url" />
+    <string name="Submit">submit</string>
+</resources>
