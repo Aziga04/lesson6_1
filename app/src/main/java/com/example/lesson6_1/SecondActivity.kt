@@ -12,42 +12,29 @@ import com.example.lesson6_1.databinding.ActivitySecondBinding
 class SecondActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySecondBinding
-    private lateinit var result: ActivityResultLauncher<Intent>
+
+    companion object{
+        const val editName: String = "edit_text"
+        const val editResult: String = "result"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        initLauncher()
-        initClickers()
-        setData()
-    }
 
-    private fun setData() {
-        binding.edText.setText(intent.getStringExtra(KEY_FOR_RESULT))
-    }
+        binding.etSendText.setText(intent.getStringExtra(editName))
 
-    private fun initLauncher() {
-        result= registerForActivityResult(ActivityResultContracts.StartActivityForResult()){result->
-            if (result.resultCode == Activity.RESULT_OK){
-                binding.edText.setText(result.data?.getStringExtra(KEY_FOR_RESULT))
-            }
+        binding.btnSend.setOnClickListener {
+            setResult(
+                RESULT_OK, Intent().putExtra(
+                    editResult,
+                    binding.etSendText.text.toString()
+                )
+            )
+            finish()
         }
     }
 
-    private fun initClickers() {
-      binding.btnReturn.setOnClickListener{
-          if (binding.edText.text.isNotEmpty()){
-              transferData()
-          }else{
-              makeText(this,getString(R.string.not_empty))
-          }
-      }
-    }
 
-    private fun transferData() {
-       val intent = Intent(this@SecondActivity,MainActivity::class.java)
-        intent.putExtra(KEY_FOR_RESULT, binding.edText.text.toString())
-        result.launch(intent)
-    }
 }
