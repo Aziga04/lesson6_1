@@ -8,8 +8,6 @@ import android.widget.Toast
 import android.widget.Toast.makeText
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import com.bumptech.glide.Glide
-import com.example.lesson6_1.Key.KEY_FOR_RESULT
 import com.example.lesson6_1.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
